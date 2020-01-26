@@ -57,9 +57,14 @@ func webhookHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "SUCCESSFULLY CONNECTED!!")
+}
+
 func main() {
 	// 기본 Url 핸들러 메서드 지정
 	http.HandleFunc("/webhook", webhookHandler)
+	http.HandleFunc("/", helloHandler)
 	// 서버 시작
 	err := http.ListenAndServe(":1337", nil)
 	// 예외 처리
